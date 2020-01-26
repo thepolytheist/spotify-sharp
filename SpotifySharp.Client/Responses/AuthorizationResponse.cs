@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace SpotifySharp.Model.Responses
+namespace SpotifySharp.Client.Responses
 {
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class AuthorizationResponse

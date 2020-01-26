@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.Model", "Spoti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.CLI", "SpotifySharp.CLI\SpotifySharp.CLI.csproj", "{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.Client", "SpotifySharp.Client\SpotifySharp.Client.csproj", "{3E96BC49-A8A7-4456-95E2-58A53B3949FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}.Release|x64.Build.0 = Release|Any CPU
 		{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}.Release|x86.ActiveCfg = Release|Any CPU
 		{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}.Release|x86.Build.0 = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|x64.Build.0 = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x64.ActiveCfg = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x64.Build.0 = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -6,6 +6,7 @@ namespace SpotifySharp.Model
     public class PlayerError
     {
         public int Status { get; set; }
+        
         public string Message { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

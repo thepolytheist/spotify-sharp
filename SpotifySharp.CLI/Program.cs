@@ -1,21 +1,24 @@
-﻿using System.Net;
-using System.Text;
-using System.Net.Http.Headers;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Collections.Generic;
-using SpotifySharp.Model;
-using SpotifySharp.Model.Responses;
+﻿using System.ComponentModel;
+using System.IO.Pipes;
+using System.Net.WebSockets;
 using Newtonsoft.Json;
+using SpotifySharp.Client;
+using SpotifySharp.Client.Responses;
+using SpotifySharp.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SpotifySharp.CLI
 {
     class Program
     {
         const string SPOTIFY_AUTH_TOKEN_URI = "https://accounts.spotify.com/api/token";
-        const string SPOTIFY_API_BASE_URI = "https://api.spotify.com";
 
         const string CLIENT_ID = "YOUR ID HERE";
         const string CLIENT_SECRET = "YOUR SECRET HERE";
@@ -38,16 +41,18 @@ namespace SpotifySharp.CLI
                     postResponse.EnsureSuccessStatusCode();
                     var authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(await postResponse.Content.ReadAsStringAsync());
 
-                    using(var apiClient = new HttpClient())
+                    try 
                     {
-                        apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResponse.AccessToken);
-
-                        var getResponse = await apiClient.GetAsync(SPOTIFY_API_BASE_URI + "/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?market=ES&include_groups=appears_on&limit=2");
-                        getResponse.EnsureSuccessStatusCode();
-                        var albumsResponse = JsonConvert.DeserializeObject<PagingObject<Album>>(await getResponse.Content.ReadAsStringAsync());
-                        foreach(var album in albumsResponse.Items) {
-                            Console.WriteLine($"{album.Name}\t{string.Join(", ", album.Artists.Select(a => a.Name).ToArray())}");
+                        var client = new SpotifyClient(authResponse.AccessToken);
+                        var albums = await client.Albums.Get(new string[]{ "41MnTivkwTO3UUJ8DrqEJJ","6JWc4iAiJ9FjyK0B59ABb4","6UXCm6bOO4gFlDQZV5yL37" });
+                        foreach(var album in albums)
+                        {
+                            Console.WriteLine(album.Artists[0].Name + " - " + album.Name);
                         }
+                    }
+                    catch (HttpRequestException e)
+                    {
+                        Console.WriteLine($"Error while executing API request: {e.Message}");
                     }
                 }
             }
