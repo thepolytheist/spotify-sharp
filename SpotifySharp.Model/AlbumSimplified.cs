@@ -1,25 +1,23 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace SpotifySharp.Model
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class AlbumSimplified
     {
-        [JsonProperty("album_group")]
         [JsonConverter(typeof(StringEnumConverter))]
         public AlbumGroup AlbumGroup { get; set; }
 
-        [JsonProperty("album_type")]
         [JsonConverter(typeof(StringEnumConverter))]
         public AlbumType AlbumType { get; set; }
 
         public List<ArtistSimplified> Artists { get; set; }
 
-        [JsonProperty("available_markets")]
         public List<string> AvailableMarkets { get; set; }
 
-        [JsonProperty("externals_urls")]
         public Dictionary<string, string> ExternalUrls { get; set; }
 
         public string Href { get; set; }
@@ -30,10 +28,8 @@ namespace SpotifySharp.Model
 
         public string Name { get; set; }
 
-        [JsonProperty("release_date")]
         public string ReleaseDate { get; set; }
 
-        [JsonProperty("release_date_precision")]
         [JsonConverter(typeof(StringEnumConverter))]
         public ReleaseDatePrecision ReleaseDatePrecision { get; set; }
 

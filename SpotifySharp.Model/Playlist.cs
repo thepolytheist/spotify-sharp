@@ -1,8 +1,10 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace SpotifySharp.Model
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class Playlist
     {
         public bool Collaborative { get; set; }
@@ -10,7 +12,6 @@ namespace SpotifySharp.Model
         [JsonProperty(Required = Required.AllowNull)]
         public string? Description { get; set; }
 
-        [JsonProperty("externals_urls")]
         public Dictionary<string, string> ExternalUrls { get; set; }
 
         public Followers Followers { get; set; }
@@ -28,7 +29,6 @@ namespace SpotifySharp.Model
         [JsonProperty(Required = Required.AllowNull)]
         public bool? Public { get; set; }
 
-        [JsonProperty("snapshot_id")]
         public string SnapshotId { get; set; }
 
         public PagingObject<PlaylistTrack> Tracks { get; set; }

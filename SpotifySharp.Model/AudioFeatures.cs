@@ -1,17 +1,17 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace SpotifySharp.Model
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class AudioFeatures
     {
         public float Acousticness { get; set; }
 
-        [JsonProperty("analysis_url")]
         public string AnalysisUrl { get; set; }
 
         public float Danceability { get; set; }
 
-        [JsonProperty("duration_ms")]
         public int DurationMs { get; set; }
 
         public float Energy { get; set; }
@@ -32,10 +32,8 @@ namespace SpotifySharp.Model
 
         public float Tempo { get; set; }
 
-        [JsonProperty("time_signature")]
         public int TimeSignature { get; set; }
 
-        [JsonProperty("track_href")]
         public string TrackHref { get; set; }
 
         public string Type { get; set; }

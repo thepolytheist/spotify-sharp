@@ -33,7 +33,7 @@ namespace SpotifySharp.CLI
                         { "grant_type", "client_credentials" }
                     };
 
-                    Console.WriteLine("Attempting to authenticate with Spotify...");
+                    Console.WriteLine("Attempting to authenticate with Spotify...\n");
                     var postResponse = await authClient.PostAsync(SPOTIFY_AUTH_TOKEN_URI, new FormUrlEncodedContent(formContent));
                     postResponse.EnsureSuccessStatusCode();
                     var authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(await postResponse.Content.ReadAsStringAsync());
@@ -60,6 +60,7 @@ namespace SpotifySharp.CLI
                 Console.WriteLine($"Uncaught error: {e.Message}");
             }
 
+            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
 

@@ -1,17 +1,18 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 
 namespace SpotifySharp.Model
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class PlaylistTrack
     {
-        [JsonProperty("added_at", Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public DateTime? AddedAt { get; set; }
 
-        [JsonProperty("added_by", Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public UserPublic? AddedBy { get; set; }
 
-        [JsonProperty("is_local")]
         public bool IsLocal { get; set; }
 
         public Track Track { get; set; }

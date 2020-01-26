@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace SpotifySharp.Model
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class Artist
     {
-        [JsonProperty("externals_urls")]
         public Dictionary<string, string> ExternalUrls { get; set; }
 
         public Followers Followers { get; set; }

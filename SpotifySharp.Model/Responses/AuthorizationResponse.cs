@@ -1,16 +1,15 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace SpotifySharp.Model.Responses
 {
+    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class AuthorizationResponse
     {
-        [JsonProperty("access_token")]
         public string AccessToken { get; set; }
 
-        [JsonProperty("token_type")]
         public string TokenType { get; set; }
 
-        [JsonProperty("expires_in")]
         public int ExpiresIn { get; set; }
     }
 }
