@@ -1,5 +1,3 @@
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using SpotifySharp.Client.Repositories;
 using System;
 using System.Net.Http;
@@ -16,6 +14,7 @@ namespace SpotifySharp.Client
         string AccessToken { get; set; }
 
         public AlbumRepository Albums;
+        public ArtistRepository Artists;
 
         public SpotifyClient(string accessToken, string baseAddress = DEFAULT_BASE_ADDRESS)
         {
@@ -37,6 +36,7 @@ namespace SpotifySharp.Client
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
 
             this.Albums = new AlbumRepository(this.HttpClient, new Uri(this.BaseUri, AlbumRepository.DEFAULT_ENDPOINT));
+            this.Artists = new ArtistRepository(this.HttpClient, new Uri(this.BaseUri, ArtistRepository.DEFAULT_ENDPOINT));
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.IO.Pipes;
-using System.Net.WebSockets;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SpotifySharp.Client;
 using SpotifySharp.Client.Responses;
 using SpotifySharp.Model;
@@ -47,7 +44,15 @@ namespace SpotifySharp.CLI
                         var albums = await client.Albums.Get(new string[]{ "41MnTivkwTO3UUJ8DrqEJJ","6JWc4iAiJ9FjyK0B59ABb4","6UXCm6bOO4gFlDQZV5yL37" });
                         foreach(var album in albums)
                         {
-                            Console.WriteLine(album.Artists[0].Name + " - " + album.Name);
+                            Console.WriteLine($"{album.Artists[0].Name} - {album.Name}");
+                        }
+                        Console.WriteLine();
+
+                        var artist = await client.Artists.Get(albums[0].Artists[0].Id);
+                        var topTracks = await client.Artists.GetTopTracks(artist, "US");
+                        foreach(var track in topTracks)
+                        {
+                            Console.WriteLine($"{track.Name} (Album: {track.Album.Name})");
                         }
                     }
                     catch (HttpRequestException e)

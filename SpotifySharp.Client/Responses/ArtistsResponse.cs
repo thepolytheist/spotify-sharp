@@ -1,4 +1,4 @@
-namespace SpotifySharp.Model.Responses
+namespace SpotifySharp.Client.Responses
 {
     public class ArtistsResponse<T>
     {
