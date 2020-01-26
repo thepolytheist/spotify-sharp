@@ -18,28 +18,12 @@ namespace SpotifySharp.Client.Repositories
 
         public async Task<Album> Get(string id)
         {
-            var response = await this.HttpClient.GetAsync(new Uri(this.BaseUri, id));
-            if(response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<Album>(await response.Content.ReadAsStringAsync());
-            }
-            else
-            {
-                throw new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
-            }
+            return await Get<Album>(new Uri(this.BaseUri, id));
         }
 
         public async Task<List<Album>> Get(string[] ids)
         {
-            var response = await this.HttpClient.GetAsync(new Uri(this.BaseUri, $"?ids={string.Join(",", ids)}"));
-            if(response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<AlbumsResponse<List<Album>>>(await response.Content.ReadAsStringAsync()).Albums;
-            }
-            else
-            {
-                throw new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
-            }
+            return (await Get<AlbumsResponse<List<Album>>>(new Uri(this.BaseUri, $"?ids={string.Join(",", ids)}"))).Albums;
         }
 
         public async Task<PagingObject<TrackSimplified>> GetTracks(Album album)
@@ -49,15 +33,7 @@ namespace SpotifySharp.Client.Repositories
 
         public async Task<PagingObject<TrackSimplified>> GetTracks(string id)
         {
-            var response = await this.HttpClient.GetAsync(new Uri(this.BaseUri, $"{id}/tracks"));
-            if(response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<PagingObject<TrackSimplified>>(await response.Content.ReadAsStringAsync());
-            }
-            else
-            {
-                throw new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
-            }
+            return await Get<PagingObject<TrackSimplified>>(new Uri(this.BaseUri, $"{id}/tracks"));
         }
     }
 }

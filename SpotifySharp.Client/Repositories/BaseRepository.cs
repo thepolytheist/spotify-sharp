@@ -1,5 +1,8 @@
+using Newtonsoft.Json;
+using SpotifySharp.Client.Responses;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -18,6 +21,19 @@ namespace SpotifySharp.Client.Repositories
         {
             this.HttpClient = httpClient;
             this.BaseUri = baseUri;
+        }
+
+        protected async Task<T> Get<T>(Uri path)
+        {
+            var response = await this.HttpClient.GetAsync(path);
+            if(response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                throw new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
+            }
         }
     }
 }
