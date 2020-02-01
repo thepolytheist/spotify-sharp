@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 using SpotifySharp.Client;
 using SpotifySharp.Client.Responses;
 using SpotifySharp.Model;
@@ -17,8 +18,8 @@ namespace SpotifySharp.CLI
     {
         const string SPOTIFY_AUTH_TOKEN_URI = "https://accounts.spotify.com/api/token";
 
-        const string CLIENT_ID = "YOUR ID HERE";
-        const string CLIENT_SECRET = "YOUR SECRET HERE";
+        const string CLIENT_ID = "420b7ddc45c54b659c4676e819f41181";
+        const string CLIENT_SECRET = "ca2278a4322347bc8c619a842bf5f18a";
 
         static async Task Main(string[] args)
         {
@@ -41,19 +42,8 @@ namespace SpotifySharp.CLI
                     try 
                     {
                         var client = new SpotifyClient(authResponse.AccessToken);
-                        var albums = await client.Albums.Get(new string[]{ "41MnTivkwTO3UUJ8DrqEJJ","6JWc4iAiJ9FjyK0B59ABb4","6UXCm6bOO4gFlDQZV5yL37" });
-                        foreach(var album in albums)
-                        {
-                            Console.WriteLine($"{album.Artists[0].Name} - {album.Name}");
-                        }
-                        Console.WriteLine();
-
-                        var artist = await client.Artists.Get(albums[0].Artists[0].Id);
-                        var topTracks = await client.Artists.GetTopTracks(artist, "US");
-                        foreach(var track in topTracks)
-                        {
-                            Console.WriteLine($"{track.Name} (Album: {track.Album.Name})");
-                        }
+                        var newReleases = await client.Browse.GetNewReleases();
+                        Console.WriteLine(newReleases.Items[0].Name + " - " + newReleases.Items[0].Artists[0].Name);                        
                     }
                     catch (HttpRequestException e)
                     {

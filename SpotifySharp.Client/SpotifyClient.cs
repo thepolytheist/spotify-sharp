@@ -15,6 +15,7 @@ namespace SpotifySharp.Client
 
         public AlbumRepository Albums;
         public ArtistRepository Artists;
+        public BrowseRepository Browse;
 
         public SpotifyClient(string accessToken, string baseAddress = DEFAULT_BASE_ADDRESS)
         {
@@ -37,6 +38,8 @@ namespace SpotifySharp.Client
 
             this.Albums = new AlbumRepository(this.HttpClient, new Uri(this.BaseUri, AlbumRepository.DEFAULT_ENDPOINT));
             this.Artists = new ArtistRepository(this.HttpClient, new Uri(this.BaseUri, ArtistRepository.DEFAULT_ENDPOINT));
+            this.Browse = new BrowseRepository(this.HttpClient, new Uri(this.BaseUri, BrowseRepository.DEFAULT_ENDPOINT));
+            this.Recommendations = new RecommendationsRepository(this.HttpClient, new Uri(this.BaseUri, RecommendationsRepository.DEFAULT_ENDPOINT));
         }
     }
 }
