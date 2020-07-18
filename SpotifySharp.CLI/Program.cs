@@ -25,30 +25,32 @@ namespace SpotifySharp.CLI
         {
             try
             {
-                using(var authClient = new HttpClient())
-                {
-                    // Authorization header will always be the same
-                    authClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(string.Join(":", CLIENT_ID, CLIENT_SECRET)));
+                using var authClient = new HttpClient();
 
-                    var formContent = new Dictionary<string, string> {
+                // Authorization header will always be the same
+                authClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(string.Join(":", CLIENT_ID, CLIENT_SECRET)));
+
+                var formContent = new Dictionary<string, string> {
                         { "grant_type", "client_credentials" }
                     };
 
-                    Console.WriteLine("Attempting to authenticate with Spotify...\n");
-                    var postResponse = await authClient.PostAsync(SPOTIFY_AUTH_TOKEN_URI, new FormUrlEncodedContent(formContent));
-                    postResponse.EnsureSuccessStatusCode();
-                    var authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(await postResponse.Content.ReadAsStringAsync());
+                Console.WriteLine("Attempting to authenticate with Spotify...\n");
+                var postResponse = await authClient.PostAsync(SPOTIFY_AUTH_TOKEN_URI, new FormUrlEncodedContent(formContent));
+                postResponse.EnsureSuccessStatusCode();
+                var authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(await postResponse.Content.ReadAsStringAsync());
 
-                    try 
+                try
+                {
+                    var client = new SpotifyClient(authResponse.AccessToken);
+                    var newReleases = await client.Browse.GetNewReleases();
+                    foreach(var newRelease in newReleases.Items)
                     {
-                        var client = new SpotifyClient(authResponse.AccessToken);
-                        var newReleases = await client.Browse.GetNewReleases();
-                        Console.WriteLine(newReleases.Items[0].Name + " - " + newReleases.Items[0].Artists[0].Name);                        
+                        Console.WriteLine(newRelease.Name + " - " + string.Join(", ", newRelease.Artists.Select(artist => artist.Name)));
                     }
-                    catch (HttpRequestException e)
-                    {
-                        Console.WriteLine($"Error while executing API request: {e.Message}");
-                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine($"Error while executing API request: {e.Message}");
                 }
             }
             catch (HttpRequestException e)
@@ -65,8 +67,8 @@ namespace SpotifySharp.CLI
         }
 
         public static string Base64Encode(string plainText) {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainTextBytes);
         }
     }
 }

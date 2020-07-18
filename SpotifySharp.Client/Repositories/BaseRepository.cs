@@ -13,19 +13,19 @@ namespace SpotifySharp.Client.Repositories
 
         public BaseRepository(HttpClient httpClient, string baseAddress)
         {
-            this.HttpClient = httpClient;
-            this.BaseUri = new Uri(baseAddress);
+            HttpClient = httpClient;
+            BaseUri = new Uri(baseAddress);
         }
 
         public BaseRepository(HttpClient httpClient, Uri baseUri)
         {
-            this.HttpClient = httpClient;
-            this.BaseUri = baseUri;
+            HttpClient = httpClient;
+            BaseUri = baseUri;
         }
 
         protected async Task<T> Get<T>(Uri path)
         {
-            var response = await this.HttpClient.GetAsync(path);
+            var response = await HttpClient.GetAsync(path);
             if(response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());

@@ -1,10 +1,9 @@
-using Newtonsoft.Json;
+using SpotifySharp.Client.Responses;
+using SpotifySharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using SpotifySharp.Client.Responses;
-using SpotifySharp.Model;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -16,24 +15,24 @@ namespace SpotifySharp.Client.Repositories
 
         public AlbumRepository(HttpClient httpClient, Uri baseUri) : base(httpClient, baseUri) { }
 
-        public async Task<Album> Get(string id)
+        public Task<Album> Get(string id)
         {
-            return await Get<Album>(new Uri(this.BaseUri, id));
+            return Get<Album>(new Uri(BaseUri, id));
         }
 
         public async Task<List<Album>> Get(string[] ids)
         {
-            return (await Get<AlbumsResponse<List<Album>>>(new Uri(this.BaseUri, $"?ids={string.Join(",", ids)}"))).Albums;
+            return (await Get<AlbumsResponse<List<Album>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Albums;
         }
 
-        public async Task<PagingObject<TrackSimplified>> GetTracks(Album album)
+        public Task<PagingObject<TrackSimplified>> GetTracks(Album album)
         {
-            return await GetTracks(album.Id);
+            return GetTracks(album.Id);
         }
 
-        public async Task<PagingObject<TrackSimplified>> GetTracks(string id)
+        public Task<PagingObject<TrackSimplified>> GetTracks(string id)
         {
-            return await Get<PagingObject<TrackSimplified>>(new Uri(this.BaseUri, $"{id}/tracks"));
+            return Get<PagingObject<TrackSimplified>>(new Uri(BaseUri, $"{id}/tracks"));
         }
     }
 }

@@ -16,30 +16,31 @@ namespace SpotifySharp.Client
         public AlbumRepository Albums;
         public ArtistRepository Artists;
         public BrowseRepository Browse;
+        public RecommendationsRepository Recommendations;
 
         public SpotifyClient(string accessToken, string baseAddress = DEFAULT_BASE_ADDRESS)
         {
-            this.AccessToken = accessToken;
-            this.BaseUri = new Uri(baseAddress);
-            this.CreateRepositories();
+            AccessToken = accessToken;
+            BaseUri = new Uri(baseAddress);
+            CreateRepositories();
         }
 
         public SpotifyClient(string accessToken, Uri baseUri)
         {
-            this.AccessToken = accessToken;
-            this.BaseUri = baseUri;
-            this.CreateRepositories();
+            AccessToken = accessToken;
+            BaseUri = baseUri;
+            CreateRepositories();
         }
 
         private void CreateRepositories()
         {
-            this.HttpClient = new HttpClient();
-            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
+            HttpClient = new HttpClient();
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
-            this.Albums = new AlbumRepository(this.HttpClient, new Uri(this.BaseUri, AlbumRepository.DEFAULT_ENDPOINT));
-            this.Artists = new ArtistRepository(this.HttpClient, new Uri(this.BaseUri, ArtistRepository.DEFAULT_ENDPOINT));
-            this.Browse = new BrowseRepository(this.HttpClient, new Uri(this.BaseUri, BrowseRepository.DEFAULT_ENDPOINT));
-            this.Recommendations = new RecommendationsRepository(this.HttpClient, new Uri(this.BaseUri, RecommendationsRepository.DEFAULT_ENDPOINT));
+            Albums = new AlbumRepository(HttpClient, new Uri(BaseUri, AlbumRepository.DEFAULT_ENDPOINT));
+            Artists = new ArtistRepository(HttpClient, new Uri(BaseUri, ArtistRepository.DEFAULT_ENDPOINT));
+            Browse = new BrowseRepository(HttpClient, new Uri(BaseUri, BrowseRepository.DEFAULT_ENDPOINT));
+            Recommendations = new RecommendationsRepository(HttpClient, new Uri(BaseUri, RecommendationsRepository.DEFAULT_ENDPOINT));
         }
     }
 }

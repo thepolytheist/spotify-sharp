@@ -1,10 +1,9 @@
-using Newtonsoft.Json;
+using SpotifySharp.Client.Responses;
+using SpotifySharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using SpotifySharp.Client.Responses;
-using SpotifySharp.Model;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -16,44 +15,44 @@ namespace SpotifySharp.Client.Repositories
 
         public ArtistRepository(HttpClient httpClient, Uri baseUri) : base(httpClient, baseUri) { }
 
-        public async Task<Artist> Get(string id)
+        public Task<Artist> Get(string id)
         {
-            return await Get<Artist>(new Uri(this.BaseUri, id));
+            return Get<Artist>(new Uri(this.BaseUri, id));
         }
 
         public async Task<List<Artist>> Get(string[] ids)
         {
-            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(this.BaseUri, $"?ids={string.Join(",", ids)}"))).Artists;
+            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Artists;
         }
 
-        public async Task<PagingObject<AlbumSimplified>> GetAlbums(Artist artist)
+        public Task<PagingObject<AlbumSimplified>> GetAlbums(Artist artist)
         {
-            return await GetAlbums(artist.Id);
+            return GetAlbums(artist.Id);
         }
 
-        public async Task<PagingObject<AlbumSimplified>> GetAlbums(string id)
+        public Task<PagingObject<AlbumSimplified>> GetAlbums(string id)
         {
-            return await Get<PagingObject<AlbumSimplified>>(new Uri(this.BaseUri, $"{id}/albums"));
+            return Get<PagingObject<AlbumSimplified>>(new Uri(BaseUri, $"{id}/albums"));
         }
 
-        public async Task<List<Track>> GetTopTracks(Artist artist, string country)
+        public Task<List<Track>> GetTopTracks(Artist artist, string country)
         {
-            return await GetTopTracks(artist.Id, country);
+            return GetTopTracks(artist.Id, country);
         }
 
         public async Task<List<Track>> GetTopTracks(string id, string country)
         {
-            return (await Get<TracksResponse<List<Track>>>(new Uri(this.BaseUri, $"{id}/top-tracks?country={country}"))).Tracks;
+            return (await Get<TracksResponse<List<Track>>>(new Uri(BaseUri, $"{id}/top-tracks?country={country}"))).Tracks;
         }
 
-        public async Task<List<Artist>> GetRelatedArtists(Artist artist)
+        public Task<List<Artist>> GetRelatedArtists(Artist artist)
         {
-            return await GetRelatedArtists(artist.Id);
+            return GetRelatedArtists(artist.Id);
         }
 
         public async Task<List<Artist>> GetRelatedArtists(string id)
         {
-            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(this.BaseUri, $"{id}/related-artists"))).Artists;
+            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(BaseUri, $"{id}/related-artists"))).Artists;
         }
     }
 }

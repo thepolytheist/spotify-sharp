@@ -1,8 +1,7 @@
-using Newtonsoft.Json;
+using SpotifySharp.Model;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using SpotifySharp.Model;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -14,9 +13,9 @@ namespace SpotifySharp.Client.Repositories
 
         public RecommendationsRepository(HttpClient httpClient, Uri baseUri) : base(httpClient, baseUri) { }
 
-        public async Task<Recommendations> GetRecommendations()
+        public Task<Recommendations> GetRecommendations()
         {
-            return (await Get<Recommendations>(this.BaseUri))
+            return Get<Recommendations>(BaseUri);
         }
     }
 }

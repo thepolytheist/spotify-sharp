@@ -1,10 +1,8 @@
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using SpotifySharp.Client.Responses;
 using SpotifySharp.Model;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -16,29 +14,29 @@ namespace SpotifySharp.Client.Repositories
 
         public BrowseRepository(HttpClient httpClient, Uri baseUri) : base(httpClient, baseUri) { }
 
-        public async Task<Category> GetCategory(string id)
+        public Task<Category> GetCategory(string id)
         {
-            return await Get<Category>(new Uri(this.BaseUri, $"categories/{id}"));
+            return Get<Category>(new Uri(BaseUri, $"categories/{id}"));
         }
 
         public async Task<PagingObject<PlaylistSimplified>> GetCategoryPlaylists(string id)
         {
-            return (await Get<PlaylistsResponse<PagingObject<PlaylistSimplified>>>(new Uri(this.BaseUri, $"categories/{id}/playlists"))).Playlists;
+            return (await Get<PlaylistsResponse<PagingObject<PlaylistSimplified>>>(new Uri(BaseUri, $"categories/{id}/playlists"))).Playlists;
         }
 
         public async Task<PagingObject<Category>> GetCategories()
         {
-            return (await Get<CategoriesResponse<PagingObject<Category>>>(new Uri(this.BaseUri, "categories"))).Categories;
+            return (await Get<CategoriesResponse<PagingObject<Category>>>(new Uri(BaseUri, "categories"))).Categories;
         }
 
         public async Task<PagingObject<PlaylistSimplified>> GetFeaturedPlaylists()
         {
-            return (await Get<PlaylistsResponse<PagingObject<PlaylistSimplified>>>(new Uri(this.BaseUri, "featured-playlists"))).Playlists;
+            return (await Get<PlaylistsResponse<PagingObject<PlaylistSimplified>>>(new Uri(BaseUri, "featured-playlists"))).Playlists;
         }
 
         public async Task<PagingObject<AlbumSimplified>> GetNewReleases()
         {
-            return (await Get<AlbumsResponse<PagingObject<AlbumSimplified>>>(new Uri(this.BaseUri, "new-releases"))).Albums;
+            return (await Get<AlbumsResponse<PagingObject<AlbumSimplified>>>(new Uri(BaseUri, "new-releases"))).Albums;
         }
     }
 }
