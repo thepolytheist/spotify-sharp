@@ -4,8 +4,8 @@ namespace SpotifySharp.Model
 {
     public class Recommendations
     {
-        public List<RecommendationsSeed> Seeds { get; set; }
+        public IList<RecommendationsSeed> Seeds { get; set; }
 
-        public List<TrackSimplified> Tracks { get; set; }
+        public IList<TrackSimplified> Tracks { get; set; }
     }
 }

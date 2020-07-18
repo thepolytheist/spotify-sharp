@@ -20,9 +20,9 @@ namespace SpotifySharp.Client.Repositories
             return Get<Album>(new Uri(BaseUri, id));
         }
 
-        public async Task<List<Album>> Get(string[] ids)
+        public async Task<IList<Album>> Get(string[] ids)
         {
-            return (await Get<AlbumsResponse<List<Album>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Albums;
+            return (await Get<AlbumsResponse<IList<Album>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Albums;
         }
 
         public Task<PagingObject<TrackSimplified>> GetTracks(Album album)

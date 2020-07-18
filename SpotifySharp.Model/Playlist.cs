@@ -20,7 +20,7 @@ namespace SpotifySharp.Model
 
         public string Id { get; set; }
 
-        public List<Image> Images { get; set; }
+        public IList<Image> Images { get; set; }
 
         public string Name { get; set; }
 

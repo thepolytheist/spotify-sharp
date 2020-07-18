@@ -6,7 +6,7 @@ namespace SpotifySharp.Model
     {
         public string Href { get; set; }
 
-        public List<Image> Icons { get; set; }
+        public IList<Image> Icons { get; set; }
 
         public string Id { get; set; }
 

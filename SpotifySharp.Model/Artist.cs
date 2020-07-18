@@ -11,13 +11,13 @@ namespace SpotifySharp.Model
 
         public Followers Followers { get; set; }
 
-        public List<string> Genres { get; set; }
+        public IList<string> Genres { get; set; }
 
         public string Href { get; set; }
 
         public string Id { get; set; }
 
-        public List<Image> Images { get; set; }
+        public IList<Image> Images { get; set; }
 
         public string Name { get; set; }
 

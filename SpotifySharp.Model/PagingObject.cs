@@ -6,14 +6,11 @@ namespace SpotifySharp.Model
     public class PagingObject<T>
     {
         public string Href { get; set; }
-
-        public List<T> Items { get; set; }
-
+        public IList<T> Items { get; set; }
         public int Limit { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]
         public string? Next { get; set; }
-
         public int Offset { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]

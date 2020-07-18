@@ -17,12 +17,12 @@ namespace SpotifySharp.Client.Repositories
 
         public Task<Artist> Get(string id)
         {
-            return Get<Artist>(new Uri(this.BaseUri, id));
+            return Get<Artist>(new Uri(BaseUri, id));
         }
 
-        public async Task<List<Artist>> Get(string[] ids)
+        public async Task<IList<Artist>> Get(string[] ids)
         {
-            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Artists;
+            return (await Get<ArtistsResponse<IList<Artist>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Artists;
         }
 
         public Task<PagingObject<AlbumSimplified>> GetAlbums(Artist artist)
@@ -35,24 +35,24 @@ namespace SpotifySharp.Client.Repositories
             return Get<PagingObject<AlbumSimplified>>(new Uri(BaseUri, $"{id}/albums"));
         }
 
-        public Task<List<Track>> GetTopTracks(Artist artist, string country)
+        public Task<IList<Track>> GetTopTracks(Artist artist, string country)
         {
             return GetTopTracks(artist.Id, country);
         }
 
-        public async Task<List<Track>> GetTopTracks(string id, string country)
+        public async Task<IList<Track>> GetTopTracks(string id, string country)
         {
-            return (await Get<TracksResponse<List<Track>>>(new Uri(BaseUri, $"{id}/top-tracks?country={country}"))).Tracks;
+            return (await Get<TracksResponse<IList<Track>>>(new Uri(BaseUri, $"{id}/top-tracks?country={country}"))).Tracks;
         }
 
-        public Task<List<Artist>> GetRelatedArtists(Artist artist)
+        public Task<IList<Artist>> GetRelatedArtists(Artist artist)
         {
             return GetRelatedArtists(artist.Id);
         }
 
-        public async Task<List<Artist>> GetRelatedArtists(string id)
+        public async Task<IList<Artist>> GetRelatedArtists(string id)
         {
-            return (await Get<ArtistsResponse<List<Artist>>>(new Uri(BaseUri, $"{id}/related-artists"))).Artists;
+            return (await Get<ArtistsResponse<IList<Artist>>>(new Uri(BaseUri, $"{id}/related-artists"))).Artists;
         }
     }
 }

@@ -14,9 +14,9 @@ namespace SpotifySharp.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public AlbumType AlbumType { get; set; }
 
-        public List<ArtistSimplified> Artists { get; set; }
+        public IList<ArtistSimplified> Artists { get; set; }
 
-        public List<string> AvailableMarkets { get; set; }
+        public IList<string> AvailableMarkets { get; set; }
 
         public Dictionary<string, string> ExternalUrls { get; set; }
 
@@ -24,7 +24,7 @@ namespace SpotifySharp.Model
 
         public string Id { get; set; }
 
-        public List<Image> Images { get; set; }
+        public IList<Image> Images { get; set; }
 
         public string Name { get; set; }
 

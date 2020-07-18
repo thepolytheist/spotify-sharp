@@ -7,9 +7,9 @@ namespace SpotifySharp.Model
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class TrackSimplified
     {
-        public List<ArtistSimplified> Artists { get; set; }
+        public IList<ArtistSimplified> Artists { get; set; }
 
-        public List<string> AvailableMarkets { get; set; }
+        public IList<string> AvailableMarkets { get; set; }
 
         public int DiscNumber { get; set; }
 
@@ -17,7 +17,7 @@ namespace SpotifySharp.Model
 
         public bool Explicit { get; set; }
 
-        public Dictionary<string, string> ExternalUrls { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> ExternalUrls { get; set; }
 
         public string Href { get; set; }
 

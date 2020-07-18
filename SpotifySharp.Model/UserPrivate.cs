@@ -14,7 +14,7 @@ namespace SpotifySharp.Model
 
         public string Email { get; set; }
 
-        public Dictionary<string, string> ExternalUrls { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> ExternalUrls { get; set; }
 
         public Followers Followers { get; set; }
 
@@ -22,7 +22,7 @@ namespace SpotifySharp.Model
 
         public string Id { get; set; }
 
-        public List<Image> Images { get; set; }
+        public IList<Image> Images { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public SubscriptionLevel Product { get; set; }
