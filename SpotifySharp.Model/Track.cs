@@ -19,9 +19,9 @@ namespace SpotifySharp.Model
 
         public bool Explicit { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ExternalIds { get; set; }
+        public IDictionary<string, string> ExternalIds { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ExternalUrls { get; set; }
+        public IDictionary<string, string> ExternalUrls { get; set; }
 
         public string Href { get; set; }
 

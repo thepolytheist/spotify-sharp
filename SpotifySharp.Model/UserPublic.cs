@@ -9,7 +9,7 @@ namespace SpotifySharp.Model
     {
         public string DisplayName { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> ExternalUrls { get; set; }
+        public IDictionary<string, string> ExternalUrls { get; set; }
 
         public Followers Followers { get; set; }
 
