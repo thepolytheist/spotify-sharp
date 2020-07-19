@@ -18,7 +18,7 @@ namespace SpotifySharp.Model
 
         public IList<string> AvailableMarkets { get; set; }
 
-        public Dictionary<string, string> ExternalUrls { get; set; }
+        public IDictionary<string, string> ExternalUrls { get; set; }
 
         public string Href { get; set; }
 

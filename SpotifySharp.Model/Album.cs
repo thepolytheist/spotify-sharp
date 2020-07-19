@@ -17,9 +17,9 @@ namespace SpotifySharp.Model
 
         public IList<Copyright> Copyrights { get; set; }
 
-        public Dictionary<string, string> ExternalIds { get; set; }
+        public IDictionary<string, string> ExternalIds { get; set; }
 
-        public Dictionary<string, string> ExternalUrls { get; set; }
+        public IDictionary<string, string> ExternalUrls { get; set; }
 
         public IList<string> Genres { get; set; }
 

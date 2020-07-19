@@ -7,7 +7,7 @@ namespace SpotifySharp.Model
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class TrackLink
     {
-        public Dictionary<string, string> ExternalUrls { get; set; }
+        public IDictionary<string, string> ExternalUrls { get; set; }
 
         public string Href { get; set; }
 
