@@ -1,19 +1,19 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
 namespace SpotifySharp.Model
 {
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-    public class Episode
+    public class Show
     {
-        [JsonProperty(Required = Required.AllowNull)]
-        public string? AudioPreviewUrl { get; set; }
+        public IList<string> AvailableMarkets { get; set; }
+
+        public IList<Copyright> Copyrights { get; set; }
 
         public string Description { get; set; }
 
-        public int DurationMs { get; set; }
+        public IList<EpisodeSimplified> Episodes { get; set; }
 
         public bool Explicit { get; set; }
 
@@ -27,22 +27,13 @@ namespace SpotifySharp.Model
 
         public bool IsExternallyHosted { get; set; }
 
-        public bool IsPlayable { get; set; }
-
-        public string Language { get; set; }
-
         public IList<string> Languages { get; set; }
+
+        public string MediaType { get; set; }
 
         public string Name { get; set; }
 
-        public string ReleaseDate { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ReleaseDatePrecision ReleaseDatePrecision { get; set; }
-
-        public ResumePoint ResumePoint { get; set; }
-
-        public ShowSimplified Show { get; set; }
+        public string Publisher { get; set; }
 
         public string Type { get; set; }
 

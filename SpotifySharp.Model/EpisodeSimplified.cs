@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SpotifySharp.Model
 {
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-    public class Episode
+    public class EpisodeSimplified
     {
         [JsonProperty(Required = Required.AllowNull)]
         public string? AudioPreviewUrl { get; set; }
@@ -41,8 +41,6 @@ namespace SpotifySharp.Model
         public ReleaseDatePrecision ReleaseDatePrecision { get; set; }
 
         public ResumePoint ResumePoint { get; set; }
-
-        public ShowSimplified Show { get; set; }
 
         public string Type { get; set; }
 
