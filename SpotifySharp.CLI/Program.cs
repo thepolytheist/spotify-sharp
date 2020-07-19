@@ -43,12 +43,8 @@ namespace SpotifySharp.CLI
                 {
                     var client = new SpotifyClient(authResponse.AccessToken);
 
-                    var featuredPlaylistsResponse = await client.Browse.GetFeaturedPlaylists();
-                    var featuredPlaylists = featuredPlaylistsResponse.Items;
-                    foreach(var playlist in featuredPlaylists)
-                    {
-                        Console.WriteLine($"{playlist.Name} [{playlist.Id}]{(playlist.Description is object ? ": " + playlist.Description : string.Empty)}");
-                    }
+                    var episode = await client.Episodes.Get("512ojhOuo1ktJprKbVcKyQ");
+                    Console.WriteLine($"{episode.Show.Name} - {episode.Name}");
                 }
                 catch (HttpRequestException e)
                 {
