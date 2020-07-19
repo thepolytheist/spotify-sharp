@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.Model", "SpotifySharp.Model\SpotifySharp.Model.csproj", "{6AE2427B-9CEE-4D04-A8C9-31C5E465AD0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifySharp.Model", "SpotifySharp.Model\SpotifySharp.Model.csproj", "{6AE2427B-9CEE-4D04-A8C9-31C5E465AD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.CLI", "SpotifySharp.CLI\SpotifySharp.CLI.csproj", "{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifySharp.CLI", "SpotifySharp.CLI\SpotifySharp.CLI.csproj", "{DFAFEAD2-2326-43AE-A3BA-3EBE6E66B2D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySharp.Client", "SpotifySharp.Client\SpotifySharp.Client.csproj", "{3E96BC49-A8A7-4456-95E2-58A53B3949FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifySharp.Client", "SpotifySharp.Client\SpotifySharp.Client.csproj", "{3E96BC49-A8A7-4456-95E2-58A53B3949FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DF38124-7F99-4F13-A6E8-6AF031979DFE}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6AE2427B-9CEE-4D04-A8C9-31C5E465AD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +60,11 @@ Global
 		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x64.Build.0 = Release|Any CPU
 		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x86.ActiveCfg = Release|Any CPU
 		{3E96BC49-A8A7-4456-95E2-58A53B3949FB}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {294E0325-BDBA-4E39-B4A3-0F9CC0213C17}
 	EndGlobalSection
 EndGlobal
