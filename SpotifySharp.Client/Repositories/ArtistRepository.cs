@@ -20,9 +20,12 @@ namespace SpotifySharp.Client.Repositories
             return Get<Artist>(new Uri(BaseUri, id));
         }
 
-        public async Task<IList<Artist>> Get(string[] ids)
+        public async Task<IList<Artist>> Get(IEnumerable<string> ids)
         {
-            return (await Get<ArtistsResponse<IList<Artist>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Artists;
+            var queryParams = new Dictionary<string, string>();
+            queryParams.Add("ids", string.Join(",", ids));
+
+            return (await Get<ArtistsResponse<IList<Artist>>>(BaseUri, queryParams)).Artists;
         }
 
         public Task<PagingObject<AlbumSimplified>> GetAlbums(Artist artist)
@@ -42,7 +45,10 @@ namespace SpotifySharp.Client.Repositories
 
         public async Task<IList<Track>> GetTopTracks(string id, string country)
         {
-            return (await Get<TracksResponse<IList<Track>>>(new Uri(BaseUri, $"{id}/top-tracks?country={country}"))).Tracks;
+            var queryParams = new Dictionary<string, string>();
+            queryParams.Add("country", country);
+
+            return (await Get<TracksResponse<IList<Track>>>(new Uri(BaseUri, $"{id}/top-tracks"), queryParams)).Tracks;
         }
 
         public Task<IList<Artist>> GetRelatedArtists(Artist artist)

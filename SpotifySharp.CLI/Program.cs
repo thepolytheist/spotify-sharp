@@ -19,7 +19,7 @@ namespace SpotifySharp.CLI
         const string SPOTIFY_AUTH_TOKEN_URI = "https://accounts.spotify.com/api/token";
 
         const string CLIENT_ID = "420b7ddc45c54b659c4676e819f41181";
-        const string CLIENT_SECRET = "ca2278a4322347bc8c619a842bf5f18a";
+        const string CLIENT_SECRET = "";
 
         static async Task Main(string[] args)
         {
@@ -43,7 +43,7 @@ namespace SpotifySharp.CLI
                 {
                     var client = new SpotifyClient(authResponse.AccessToken);
 
-                    var episode = await client.Episodes.Get("512ojhOuo1ktJprKbVcKyQ");
+                    var episode = await client.Episodes.Get("512ojhOuo1ktJprKbVcKyQ", "ES");
                     Console.WriteLine($"{episode.Show.Name} - {episode.Name}");
                 }
                 catch (HttpRequestException e)
@@ -57,7 +57,7 @@ namespace SpotifySharp.CLI
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Uncaught error: {e.Message}");
+                Console.WriteLine($"Uncaught error: {e}");
             }
 
             Console.WriteLine("\nPress any key to exit.");

@@ -15,14 +15,21 @@ namespace SpotifySharp.Client.Repositories
 
         public EpisodeRepository(HttpClient httpClient, Uri baseUri) : base(httpClient, baseUri) { }
 
-        public Task<Episode> Get(string id)
+        public Task<Episode> Get(string id, string market = "")
         {
-            return Get<Episode>(new Uri(BaseUri, id));
+            var queryParams = new Dictionary<string, string>();
+            if (!string.IsNullOrEmpty(market)) queryParams.Add("market", market);
+
+            return Get<Episode>(new Uri(BaseUri, id), queryParams);
         }
 
-        public async Task<IList<Episode>> Get(string[] ids)
+        public async Task<IList<Episode>> Get(IEnumerable<string> ids, string market = "")
         {
-            return (await Get<EpisodesResponse<IList<Episode>>>(new Uri(BaseUri, $"?ids={string.Join(",", ids)}"))).Episodes;
+            var queryParams = new Dictionary<string, string>();
+            queryParams.Add("ids", string.Join(",", ids));
+            if (!string.IsNullOrEmpty(market)) queryParams.Add("market", market);
+            
+            return (await Get<EpisodesResponse<IList<Episode>>>(BaseUri, queryParams)).Episodes;
         }
     }
 }
