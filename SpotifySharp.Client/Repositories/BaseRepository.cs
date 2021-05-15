@@ -25,7 +25,7 @@ namespace SpotifySharp.Client.Repositories
             BaseUri = baseUri;
         }
 
-        protected async Task<T> Get<T>(Uri path, IDictionary<string, string> queryParams = null)
+        protected async Task<T> Get<T>(Uri path, IDictionary<string, string>? queryParams = null)
         {
             var queryString = DictionaryToQueryString(queryParams);
 
@@ -40,7 +40,7 @@ namespace SpotifySharp.Client.Repositories
             }
         }
 
-        private string DictionaryToQueryString(IDictionary<string, string> dictionary)
+        private string DictionaryToQueryString(IDictionary<string, string>? dictionary)
         {
             if(dictionary is object && dictionary.Any())
             {

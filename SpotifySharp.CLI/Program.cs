@@ -18,8 +18,8 @@ namespace SpotifySharp.CLI
     {
         const string SPOTIFY_AUTH_TOKEN_URI = "https://accounts.spotify.com/api/token";
 
-        const string CLIENT_ID = "420b7ddc45c54b659c4676e819f41181";
-        const string CLIENT_SECRET = "";
+        const string CLIENT_ID = "<Your client ID>";
+        const string CLIENT_SECRET = "<Your secret>";
 
         static async Task Main(string[] args)
         {
@@ -43,8 +43,11 @@ namespace SpotifySharp.CLI
                 {
                     var client = new SpotifyClient(authResponse.AccessToken);
 
-                    var episode = await client.Episodes.Get("512ojhOuo1ktJprKbVcKyQ", "ES");
-                    Console.WriteLine($"{episode.Show.Name} - {episode.Name}");
+                    var searchResponse = await client.Search("Coheed & Cambria", new string[] { "track" });
+                    foreach(var track in searchResponse.Tracks.Items)
+                    {
+                        Console.WriteLine(track.Name);
+                    }
                 }
                 catch (HttpRequestException e)
                 {
