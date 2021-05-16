@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Collections.Generic;
 
 namespace SpotifySharp.Model
 {
@@ -30,7 +30,7 @@ namespace SpotifySharp.Model
         public bool IsPlayable { get; set; }
 
         public TrackLink LinkedFrom { get; set; }
-
+        
         public Restrictions Restrictions { get; set; }
 
         public string Name { get; set; }

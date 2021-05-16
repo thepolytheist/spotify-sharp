@@ -1,20 +1,14 @@
-﻿using SpotifySharp.Client;
-using SpotifySharp.Client.Responses;
-using SpotifySharp.Model;
-using System;
-using System.Linq;
-using System.Net;
+﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
+using SpotifySharp.Client;
 
 namespace SpotifySharp.CLI
 {
     class Program
     {
         const string CLIENT_ID = "420b7ddc45c54b659c4676e819f41181";
-        const string CLIENT_SECRET = "d4ed5d7e1c5e45a5abb8bc2b8ee8a0da";
+        const string CLIENT_SECRET = "8920e70270a34446800184821c456836";
 
         static async Task Main(string[] args)
         {

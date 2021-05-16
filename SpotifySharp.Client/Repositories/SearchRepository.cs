@@ -1,9 +1,8 @@
-using SpotifySharp.Client.Responses;
-using SpotifySharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using SpotifySharp.Client.Responses;
 
 namespace SpotifySharp.Client.Repositories
 {

@@ -1,7 +1,7 @@
-using SpotifySharp.Model;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using SpotifySharp.Model;
 
 namespace SpotifySharp.Client.Repositories
 {

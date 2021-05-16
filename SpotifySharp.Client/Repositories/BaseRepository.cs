@@ -1,10 +1,11 @@
-using Newtonsoft.Json;
-using SpotifySharp.Client.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using SpotifySharp.Client.Responses;
 
 namespace SpotifySharp.Client.Repositories
 {
@@ -36,7 +37,21 @@ namespace SpotifySharp.Client.Repositories
             }
             else
             {
-                throw new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
+                throw await GetExceptionFromResponse(response);
+            }
+        }
+
+        protected async Task Put<T>(Uri path, T data, IDictionary<string, string>? queryParams = null)
+        {
+            var queryString = DictionaryToQueryString(queryParams);
+
+            using(var content = JsonContent.Create<T>(data))
+            {
+                var response = await HttpClient.PutAsync(path+queryString, content);
+                if(!response.IsSuccessStatusCode)
+                {
+                    throw await GetExceptionFromResponse(response);
+                }
             }
         }
 
@@ -49,6 +64,11 @@ namespace SpotifySharp.Client.Repositories
             }
             
             return string.Empty;
+        }
+
+        private async Task<Exception> GetExceptionFromResponse(HttpResponseMessage response)
+        {
+            return new Exception(JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync()).Error.Message);
         }
     }
 }
