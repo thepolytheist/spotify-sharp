@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SpotifySharp.Model\SpotifySharp.Model.csproj" />
     <ProjectReference Include="..\SpotifySharp.Client\SpotifySharp.Client.csproj" />
   </ItemGroup>
 
